@@ -19,10 +19,26 @@ function shuffleDeck(deck) {
     return deck;
 }
 
-const testDeck = createDeck();
-console.log("Before Shuffle: ", testDeck);
+function deal(deck, numPlayers){
+    const players = Array.from({ length: numPlayers }, () => []);
+    let cardsPerPlayer = 13;
+    let totalCardsToDeal = cardsPerPlayer * numPlayers
 
-const shuffledDeck = shuffleDeck(testDeck);
-console.log("After Shuffle: ", shuffledDeck);
+    for (let i = 0; i < totalCardsToDeal; i++){
+        players[i % numPlayers].push(deck[i]);
+    }
 
-console.log(shuffledDeck.length)
+    return players;
+}
+
+function startGame() {
+    const deck = createDeck();
+    const shuffled = shuffleDeck(deck);
+    const players = deal(shuffled,);
+  
+    players.forEach((hand, index) => {
+      console.log(`Player ${index + 1}:`, hand);
+    });
+  }
+  
+  startGame();
